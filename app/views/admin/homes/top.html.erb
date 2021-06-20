@@ -1,0 +1,21 @@
+<h3>マイページ</h3>
+
+<%= attachment_image_tag @admin, :blog, :fill, 100, 100, format: 'jpeg' %>
+
+<%= @admin.name %>
+
+<%= @admin.age %>
+
+<%= @admin.birthday %>
+
+<%= @admin.sign %>
+
+<%= @admin.location %>
+
+<%= @admin.hobby %>
+
+<%= @admin.introduction %>
+
+<%= link_to "編集", admin_edit_path %>
+
+<h3>投稿一覧</h3>

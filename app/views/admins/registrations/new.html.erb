@@ -1,0 +1,69 @@
+<h2>Sign up</h2>
+
+<%= form_with model: @admin, url: admin_registration_path, id: 'admin_user', class: 'admin_user', local: true do |f| %>
+  <%= render "admins/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :マイ画像 %><br />
+    <%= f.attachment_field :blog, autofocus: true, autocomplete: "blog" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :年齢 %><br />
+    <%= f.text_field :age, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :生年月日 %><br />
+    <%= f.text_field :birthday, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :星座 %><br />
+    <%= f.text_field :sign, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :所在地 %><br />
+    <%= f.text_field :location, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :趣味 %><br />
+    <%= f.text_field :hobby, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :自己紹介 %><br />
+    <%= f.text_area :introduction, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード（確認） %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "admins/shared/links" %>

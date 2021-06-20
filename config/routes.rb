@@ -34,6 +34,9 @@ end
   get '/' => 'homes#top'
   get 'edit' => 'homes#edit', as: :edit
   patch 'update' => 'homes#update', as: :update
+
+  resources :blogs, only: [:create, :new, :edit, :show, :destroy]
+  patch 'blogs/:id' => 'blogs#update'
   end
 
 end

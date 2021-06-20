@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
   def top
     @admin = current_admin
+    @blogs = Blog.all
   end
 
   def edit

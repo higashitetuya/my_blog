@@ -5,4 +5,5 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          attachment :blog
+         has_many :blogs, dependent: :destroy
 end

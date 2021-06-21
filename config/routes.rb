@@ -36,7 +36,7 @@ end
   patch 'update' => 'homes#update', as: :update
 
   resources :blogs, only: [:create, :new, :edit, :show, :destroy]
-  patch 'blogs/:id' => 'blogs#update'
+  patch 'blogs/:id' => 'blogs#update', as: :blog_update
   end
 
 end

@@ -1,2 +1,10 @@
-<h1>Admin::Blogs#show</h1>
-<p>Find me in app/views/admin/blogs/show.html.erb</p>
+
+<%= attachment_image_tag @blog, :image, :fill, 400, 350, format: 'jpeg' %>
+
+<%= @blog.title %>
+
+<%= @blog.body %>
+
+<% if @blog.admin == current_admin %>
+<%= link_to "削除する", admin_blog_path(@blog.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+<% end %>

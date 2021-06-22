@@ -35,7 +35,10 @@ end
   get 'edit' => 'homes#edit', as: :edit
   patch 'update' => 'homes#update', as: :update
 
-  resources :blogs, only: [:create, :new, :edit, :show, :destroy]
+  resources :blogs, only: [:create, :new, :edit, :show, :destroy] do
+    resources :blog_comments, only: [:create, :destroy]
+  end
+
   patch 'blogs/:id' => 'blogs#update', as: :blog_update
   end
 

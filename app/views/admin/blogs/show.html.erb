@@ -6,5 +6,29 @@
 <%= @blog.body %>
 
 <% if @blog.admin == current_admin %>
+<%= link_to "投稿編集", edit_admin_blog_path(@blog.id) %>
 <%= link_to "削除する", admin_blog_path(@blog.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
 <% end %>
+
+<% if user_signed_in? %>
+<div class="new-comment">
+<%= form_with(model:[@blog, @blog_comment], url: admin_blog_blog_comments_path(@blog), local: true) do |f| %>
+  <%= f.text_area :blog_comment, rows:'5',placeholder: "コメントをここに入れてください" %>
+  <%= f.submit "送信する" %>
+<% end %>
+<% end %>
+</div>
+
+<div class="comments">
+<% @blog.blog_comments.each do |blog_comment| %>
+  <%= attachment_image_tag blog_comment.user, :profile %>
+  <%= blog_comment.user.name %>
+  <%= blog_comment.created_at.strftime('%Y/%m/%d') %><%= blog_comment.blog_comment %>
+  <% if blog_comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "削除", admin_blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %>
+  </div>
+  <% end %>
+<% end %>
+</div>
+

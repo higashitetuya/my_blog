@@ -19,6 +19,15 @@
 <% end %>
 </div>
 
+<% if admin_signed_in? %>
+<div class="new-comment">
+<%= form_with(model:[@blog, @admin_blog_comment], url: admin_blog_admin_blog_comments_path(@blog), local: true) do |f| %>
+  <%= f.text_area :admin_blog_comment, rows:'5',placeholder: "コメント" %>
+  <%= f.submit "送信する" %>
+<% end %>
+<% end %>
+</div>
+
 <div class="comments">
 <% @blog.blog_comments.each do |blog_comment| %>
   <%= attachment_image_tag blog_comment.user, :profile %>
@@ -32,3 +41,15 @@
 <% end %>
 </div>
 
+<div class="comments">
+<% @blog.admin_blog_comments.each do |admin_blog_comment| %>
+  <%= attachment_image_tag admin_blog_comment.admin, :blog, :fill, 100, 100, format: 'jpeg' %>
+  <%= admin_blog_comment.admin.name %>
+  <%= admin_blog_comment.created_at.strftime('%Y/%m/%d') %><%= admin_blog_comment.admin_blog_comment %>
+  <% if admin_blog_comment.admin == current_admin %>
+  <div class="comment-delete">
+    <%= link_to "削除", admin_blog_admin_blog_comment_path(admin_blog_comment.blog, admin_blog_comment), method: :delete %>
+  </div>
+  <% end %>
+<% end %>
+</div>

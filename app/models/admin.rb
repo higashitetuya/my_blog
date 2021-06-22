@@ -6,4 +6,5 @@ class Admin < ApplicationRecord
 
          attachment :blog
          has_many :blogs, dependent: :destroy
+         has_many :admin_blog_comments, dependent: :destroy
 end

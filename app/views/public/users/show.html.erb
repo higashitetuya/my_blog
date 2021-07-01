@@ -1,44 +1,68 @@
-<p>ようこそ<%= current_user.name %>さん!!</p>
+<div class="container">
+  <p>ようこそ<%= current_user.name %>さん!!</p>
 
-<h2>ブログ(最近やっていること)</h2>
+  <h3>ブログ(最近やっていること)</h3>
+  <div class="row">
+    <div class="col-lg-9">
 
-<%= attachment_image_tag @user, :profile %>
+      <%= attachment_image_tag @user, :profile, :fill, 70, 70, format: 'jpeg' %>
 
-<%= @user.name %>
+      <%= @user.name %>
 
-<% @blogs.each do |blog| %>
 
-<div>
-  <%= attachment_image_tag blog, :image, :fill, 300, 250, format: 'jpeg' %>
-  <%= attachment_image_tag blog.admin, :blog, :fill, 70, 70, format: 'jpeg' %>
-  <%= blog.admin.name %>
-  <p><%= blog.created_at.strftime('%Y/%m/%d') %></p>
-  <p>コメント : <%= blog.blog_comments.count %></p>
-  <p>管理人コメント : <%= blog.admin_blog_comments.count %></p>
-  <p>タイトル：<%= link_to admin_blog_path(blog.id) do %><%= blog.title %><% end %></p>
+
+      <% @blogs.each do |blog| %>
+      <div class="cooking col-md-4 pt-4 border border-warning rounded">
+        <div class="text-center">
+          <%= attachment_image_tag blog, :image, :fill, 230, 180, format: 'jpeg' %>
+        </div>
+        <div class="card-body">
+          <div class="pb-1"><%= blog.created_at.strftime('%Y/%m/%d') %>
+            <span class="pl-2"><i class="far fa-comment-dots"></i></span><span class="pl-1"><%= blog.blog_comments.count %></span>
+            <span class="pl-2"><i class="fas fa-user"></i></span><i class="far fa-comment-dots"></i><span class="pl-2"><%= blog.admin_blog_comments.count %></span>
+          </div>
+          <span class="pr-2"><%= attachment_image_tag blog.admin, :blog, :fill, 50, 50, format: 'jpeg', class:"rounded-circle"; %></span>
+          <span class="pr-3"><%= blog.admin.name %></span>
+          <div class="pt-1">
+            <span class="pr-2"><i class="fas fa-file-signature"></i></span><%= link_to admin_blog_path(blog.id) do %><%= blog.title %><% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3" >
+      <div class="text-center">
+        <h4>プロフィール</h4>
+        <%= attachment_image_tag @admin, :blog, :fill, 100, 100, format: 'jpeg' %>
+      </div>
+      <div class="text-center">
+        <%= @admin.name %>
+      </div>
+      <div class="card-body">
+          年齢 : <%= @admin.age %>
+        <div>
+          生年月日 : <%= @admin.birthday %>
+        </div>
+        <div>
+          星座 : <%= @admin.sign %>
+        </div>
+        <div>
+          所在地 : <%= @admin.location %>
+        </div>
+        <div>趣味</div>
+          <%= @admin.hobby %>
+        <div>自己紹介</div>
+          <%= @admin.introduction %>
+        <div>
+        <div>メールアドレス</div>
+          <%= @admin.email %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-
-<% end %>
-
-<h3>プロフィール</h3>
-
-<%= attachment_image_tag @admin, :blog, :fill, 100, 100, format: 'jpeg' %>
-
-<%= @admin.name %>
-
-<%= @admin.email %>
-
-<%= @admin.age %>
-
-<%= @admin.birthday %>
-
-<%= @admin.sign %>
-
-<%= @admin.location %>
-
-<%= @admin.hobby %>
-
-<%= @admin.introduction %>
 
 
 

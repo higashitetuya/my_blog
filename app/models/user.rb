@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   attachment :profile
   has_many :blog_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   validates :name, presence: true
   validates :profile, presence: true
+
 end

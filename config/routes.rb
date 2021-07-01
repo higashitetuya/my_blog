@@ -36,6 +36,7 @@ end
   patch 'update' => 'homes#update', as: :update
 
   resources :blogs, only: [:create, :new, :edit, :show, :destroy] do
+    resource :favorites, only: [:create, :destroy]
     resources :blog_comments, only: [:create, :destroy]
     resources :admin_blog_comments, only: [:create, :destroy]
   end
